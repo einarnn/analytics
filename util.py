@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 import random
+from functools import reduce 
+from operator import mul
+
 
 BASE_SECURITY_ACES = 100
 NUM_POINTS = 1440
@@ -99,6 +102,12 @@ def gen_data(timesteps_per_day=1440, days=1):
         ts = scaled_ts
     return np.vstack((ts, values)).T
 
+
+def reshape(lst, shape):
+    if len(shape) == 1:
+        return lst
+    n = reduce(mul, shape[1:])
+    return [reshape(lst[i*n:(i+1)*n], shape[1:]) for i in range(len(lst)//n)]
 
 if __name__ == '__main__':
 
