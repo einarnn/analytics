@@ -10,3 +10,4 @@ scikit-learn
 tensorflow
 tqdm
 statsmodels
+prophet
